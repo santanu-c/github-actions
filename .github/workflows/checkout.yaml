@@ -14,6 +14,6 @@ jobs:
           @github.com/$GITHIB_REPOSITORY.git"
           git fetch origin
           got checkout main
-      - name:
+      - name: Lists files after
         run: ls -la
 
