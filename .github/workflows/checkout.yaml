@@ -10,7 +10,7 @@ jobs:
       - name: Checkout
         run: |
           git init
-          git remote add origin "https://$GITHUB_ACTOR:${{ secrets.GITHUB_TOKEN }}
+          git remote add origin "https://$GITHUB_ACTOR:${{ secrets.gh_token }}
           @github.com/$GITHIB_REPOSITORY.git"
           git fetch origin
           got checkout main
