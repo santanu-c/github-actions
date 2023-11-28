@@ -8,6 +8,7 @@ jobs:
       - name: Simple JS Action
         id: greet
         uses: actions/hello-world-javascript-action@main
+        ## you can also use commit id instead of @main, @<commit id>
         with:
           who-to-greet: Ali
       - name: Log Greeting Time
