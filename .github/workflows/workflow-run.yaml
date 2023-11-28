@@ -3,6 +3,9 @@ on:
   workflow_run:
     workflows: [Repository Events Types]
     types: [completed]
+    branches:
+      - main  
+    # meaning when the "Repository Events Types" completed on branch main, then run this workflow
 jobs:
   echo-string:
     runs-on: ubuntu-latest
