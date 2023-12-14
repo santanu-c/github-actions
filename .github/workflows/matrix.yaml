@@ -13,11 +13,11 @@ jobs:
       fail_fast: false
       ## maximum 3 jobs can run
       ## max-parallel: 3
-      runs-on: ${{ matrix.os }}
-      steps:
-        - run: node -v
-        - uses: actions/setup-node@v3
-          with:
-            node-version: ${{ matrix.node-version }}
-        - run: node -v
+    runs-on: ${{ matrix.os }}
+    steps:
+      - run: node -v
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: node -v
 
