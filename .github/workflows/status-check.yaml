@@ -4,23 +4,24 @@ on: [push]
 jobs:
   job-1:
     runs-on: ubuntu-latest
+    timeout-minutes: 1 
     steps:
       - name: Step 1
         #run: sleep 20
         run: sleep 90
-        timeout-minutes: 1
+        #timeout-minutes: 1  # you can put it at job level also
       - name: Step 2
         id: step-2
         # This will continue to run even if this fails
         # or you can fo timeout-minutes
-        continue-on-error: true 
+        continue-on-error: true
         # This is needed to just check the status of the Step 2
         run: exit 1
         # we explicitly fail to test the failure() condition
       - name: Runs on step 2 Failure
         if: failure() && steps.step-2.conclusion == 'failure'
-        # status check is applied to all if keys by default. 
-        # so if we just do steps.step-2.conclusion == 'failure' 
+        # status check is applied to all if keys by default.
+        # so if we just do steps.step-2.conclusion == 'failure'
         # then it means success() && steps.step-2.conclusion == 'failure'
         # so we need to check explicitly this
         # failure() && steps.step-2.conclusion == 'failure'
