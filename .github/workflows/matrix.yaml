@@ -41,7 +41,7 @@ jobs:
         #fail_fast: false
     runs-on: ${{ matrix.os }}
     steps:
-      - run: node -
+      - run: node -v
       - run: echo '${{ toJson(matrix) }}' 
       - uses: actions/setup-node@v3
         with:
