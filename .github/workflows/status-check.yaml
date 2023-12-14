@@ -20,7 +20,7 @@ jobs:
         # so we need to check explicitly this
         # failure() && steps.step-2.conclusion == 'failure'
         # we need to overwrite the success() function that is applied by default
-        run: echo "Step 2 has failed"
+        run: echo "Step 2 has failed" 
       - name: Runs on Failure
         if: failure()
         run: echo "Ffailure"
