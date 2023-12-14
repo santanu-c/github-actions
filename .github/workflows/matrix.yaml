@@ -10,7 +10,7 @@ jobs:
         os: [ubuntu-latest, windows-latest]
         node-version: [14,15,16]
       ## Prevent github to cancel in progress job to fail if a job fails
-      fail_fast: false
+      ## fail_fast: false
       ## maximum 3 jobs can run
       ## max-parallel: 3
     runs-on: ${{ matrix.os }}
