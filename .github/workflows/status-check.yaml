@@ -12,7 +12,7 @@ jobs:
         # This is needed to just check the status of the Step 2
         run: exit 1
         # we explicitly fail to test the failure() condition
-      - name: Runs on Failure
+      - name: Runs on step 2 Failure
         if: failure() && steps.step-2.conclusion == 'failure'
         # status check is applied to all if keys by default. 
         # so if we just do steps.step-2.conclusion == 'failure' 
@@ -20,7 +20,10 @@ jobs:
         # so we need to check explicitly this
         # failure() && steps.step-2.conclusion == 'failure'
         # we need to overwrite the success() function that is applied by default
-        run: echo "Runs only on failure"
+        run: echo "Step 2 has failed"
+      - name: Runs on Failure
+        if: failure()
+        run: echo "Ffailure"
       - name: Runs on Success
         # This is not needed (DEFAULT)
         if: success()
