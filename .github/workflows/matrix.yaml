@@ -15,13 +15,14 @@ on: [push]
 jobs:
   node-matrix:
     ## prevents to fail the workflow if a job in the matrix fails
-    continue-on-error: true
+    ## continue-on-error: false
+    continue-on-error: ${{ matrix.experimental == true }}
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest]
         node-version: [14,15,16]
       ## Prevent github to cancel in progress job to fail if a job fails
-      ## fail_fast: false
+      ## fail-fast: false
       ## maximum 3 jobs can run
       ## max-parallel: 3
         include:
@@ -38,9 +39,11 @@ jobs:
         exclude:
           - os: ubuntu-latest
             node-version: 14
-        #fail_fast: false
+        fail-fast: true
     runs-on: ${{ matrix.os }}
     steps:
+      - if: matrix.experimental == true
+        run: exit 1
       - run: node -v
       - run: echo '${{ toJson(matrix) }}' 
       - uses: actions/setup-node@v3
