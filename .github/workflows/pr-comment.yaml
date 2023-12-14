@@ -6,9 +6,10 @@ jobs:
   pr-comment:
     runs-on: ubuntu-latest
     permissions:
-      issues: read
+      ## wrong issues: read 
+      pull-requests: write
     steps:
-      - name: Comment on New PR
+      - name: Comment on New PRs
         uses: actions/github-script@v6
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
