@@ -39,7 +39,7 @@ jobs:
         exclude:
           - os: ubuntu-latest
             node-version: 14
-        fail-fast: true
+      fail-fast: true
     runs-on: ${{ matrix.os }}
     steps:
       - if: matrix.experimental == true
