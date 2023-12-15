@@ -17,4 +17,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Sleeping
-      run: sleep 30
+      run: sleep 30 
