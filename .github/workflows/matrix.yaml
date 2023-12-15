@@ -1,0 +1,52 @@
+name: Matrix
+on: [push]
+
+# --- Original --- #
+# X {OS: UBUNTU-LATEST, NODE-VERSION: 14, IS-UBUNTU: TRUE, EXPERIMENTAL: FALSE }
+# {OS: UBUNTU-LATEST, NODE-VERSION: 15, IS-UBUNTU: TRUE, EXPERIMENTAL: FALSE }
+# {OS: UBUNTU-LATEST, NODE-VERSION: 16, IS-UBUNTU: TRUE, EXPERIMENTAL: FALSE }
+# {OS: WINDOWS-LATEST, NODE-VERSION: 14, EXPERIMENTAL: FALSE }
+# {OS: WINDOWS-LATEST, NODE-VERSION: 15, EXPERIMENTAL: FALSE }
+# {OS: WINDOWS-LATEST, NODE-VERSION: 16, EXPERIMENTAL: FALSE }
+# {OS: MACOS-LATEST, NODE-VERSION: 15 }
+# {OS: UBUNTU-LATEST, NODE-VERSION: 17 }
+
+
+jobs:
+  node-matrix:
+    ## prevents to fail the workflow if a job in the matrix fails
+    ## continue-on-error: false
+    continue-on-error: ${{ matrix.experimental == true }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        node-version: [14,15,16]
+      ## Prevent github to cancel in progress job to fail if a job fails
+      ## fail-fast: false
+      ## maximum 3 jobs can run
+      ## max-parallel: 3
+        include:
+          - os: ubuntu-latest
+            is-ubuntu: true
+          - os: macos-latest
+            node-version: 15
+          - experimental: FALSE
+          - os: ubuntu-latest
+            node-version: 16
+            experimental: TRUE
+          - os: ubuntu-latest
+            node-version: 17
+        exclude:
+          - os: ubuntu-latest
+            node-version: 14
+      fail-fast: true
+    runs-on: ${{ matrix.os }}
+    steps:
+      - if: matrix.experimental == true
+        run: exit 1
+      - run: node -v
+      - run: echo '${{ toJson(matrix) }}' 
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: node -v
