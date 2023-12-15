@@ -11,7 +11,10 @@ on:
 jobs:
   calling-a-reusable-wf:
     ## recap  that you should use commit hash, not main
-    uses: santanu-c/GHworkflows/.github/workflows/reusable.yaml@main
+    ## remote workflow syntax from another repo
+    # uses: santanu-c/GHworkflows/.github/workflows/reusable.yaml@main
+    ## local repo reusable workflow
+    uses: .github/workflows/reusable.yaml@main
     with:
       name: ${{ inputs.name }}
     secrets:
