@@ -1,0 +1,19 @@
+name: Calling Reusable workflows
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: "Input description"
+        type: string
+        default: 'Ali'
+        required: false
+
+jobs:
+  calling-a-reusable-wf:
+    ## recap  that you should use commit hash, not main
+    uses: GHworkflows/.github/reusable.@main
+    with:
+      name: ${{ inputs.name }}
+    secrets:
+      access-token: ${{ secrets.ACCESS_TOKEN }}
+      
