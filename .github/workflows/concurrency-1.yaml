@@ -9,7 +9,7 @@ on:
         required: true
 
 concurrency: 
-  group: ${{ github.event.inputs.environment }}
+  group: ${{ github.workflow }}-${{ github.event.inputs.environment }}
   cancel-in-progress: true
         
 jobs:
@@ -18,6 +18,3 @@ jobs:
     steps:
     - name: Sleeping
       run: sleep 30
-
-
-  
