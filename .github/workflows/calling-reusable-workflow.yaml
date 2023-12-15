@@ -1,13 +1,6 @@
 name: Calling Reusable workflows
 on:
   workflow_dispatch:
-    ## we are not using these inputs, I just did a copy paste 
-    inputs:
-        name:
-          description: "Input description"
-          type: string
-          default: 'Ali'
-          required: false
 jobs:
   calling-a-reusable-wf-in-the-same-repo:
     uses: ./.github/workflows/reusable-workflow.yaml
