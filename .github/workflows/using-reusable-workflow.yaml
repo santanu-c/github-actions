@@ -15,9 +15,8 @@ jobs:
     # uses: santanu-c/GHworkflows/.github/workflows/reusable.yaml@main
     ## local repo reusable workflow
     #uses: santanu-c/github-actions/.github/workflows/reusable.yaml@main
-    uses: reusable.yaml@main
+    uses: ./.github/workflows/reusable.yaml@main
     with:
       name: ${{ inputs.name }}
     secrets:
       access-token: ${{ secrets.ACCESS_TOKEN }}
-      
